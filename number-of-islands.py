@@ -1,5 +1,5 @@
 # https://leetcode.com/problems/number-of-islands
-# Алгоритм поиска в глубину на Python
+
 class Solution(object):
     def numIslands(self, grid):
         """
@@ -8,8 +8,7 @@ class Solution(object):
         """
         visited = set()
         islands = 0
-        h = len(grid)
-        w = len(grid[0])
+        h, w = len(grid), len(grid[0])
 
         for i in range(0, h):
             for j in range(0, w):
@@ -21,6 +20,7 @@ class Solution(object):
         return islands
 
     def dfs(self, grid, h, w, i, j, visited=None):
+        # Алгоритм поиска в глубину
         if visited is None:
             visited = set()
         visited.add((i, j))
@@ -38,12 +38,13 @@ class Solution(object):
         return visited
 
     def within_grid(self, h, w, i, j):
-        return 0 <= i < h and 0 <= j and j < w
+        return 0 <= i < h and 0 <= j < w
 
 
 def tests():
     solution = Solution()
 
+    # 1
     grid = [
         ["1", "1", "0", "0", "0"],
         ["1", "1", "0", "0", "0"],
@@ -54,6 +55,7 @@ def tests():
     result = solution.numIslands(grid=grid)
     assert result == 3
 
+    # 2
     grid = [
         ["1", "1", "1"],
         ["0", "1", "0"],
@@ -63,9 +65,20 @@ def tests():
     result = solution.numIslands(grid=grid)
     assert result == 1
 
+    # 3
     grid = [["1", "0", "1", "1", "0", "1", "1"]]
     result = solution.numIslands(grid=grid)
     assert result == 3
+
+    # 4
+    grid = [
+        ["0", "1", "0", "0", "0"],
+        ["1", "1", "0", "0", "0"],
+        ["0", "0", "1", "0", "0"],
+        ["1", "0", "0", "1", "1"]
+    ]
+    result = solution.numIslands(grid=grid)
+    assert result == 4
 
     print("ВСЕ ЧИКИ-ПУКИ!!!")
 
