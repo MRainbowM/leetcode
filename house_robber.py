@@ -35,6 +35,7 @@ from typing import List
 
 
 class Solution:
+    """A class with a solution to problem 198."""
 
     def rob(self, nums: List[int]) -> int:
         """
@@ -70,6 +71,7 @@ def tests():
 
     :doc-author: Trelent
     """
+
     solution = Solution()
 
     result = solution.rob(nums=[2, 7, 9, 3, 1])
