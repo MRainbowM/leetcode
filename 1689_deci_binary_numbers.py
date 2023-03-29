@@ -32,7 +32,24 @@ Output: 9
 
 class Solution:
     def minPartitions(self, n: str) -> int:
-        return int(max(n))
+        # return int(max(n))
+        count_nums = 0
+        while True:
+            new_n = ''
+
+            for num in n:
+                if num != '0':
+                    new_n += str(int(num) - 1)
+                else:
+                    new_n += '0'
+
+            count_nums += 1
+
+            if int(new_n) == 0:
+                break
+            n = new_n
+
+        return count_nums
 
 
 def tests():
