@@ -1,4 +1,8 @@
-"""Бинарный поиск"""
+"""
+Бинарный поиск
+O(logn)
+"""
+
 
 from typing import List, Optional
 
