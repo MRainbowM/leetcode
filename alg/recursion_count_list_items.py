@@ -5,7 +5,7 @@
 from typing import List
 
 
-def v(number_list: List[int]) -> int:
+def count_list_items(number_list: List[int]) -> int:
     if number_list == list():
         return 0
     else:
