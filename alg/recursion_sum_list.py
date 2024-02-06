@@ -6,13 +6,16 @@ from typing import List
 
 
 def sum_list_v2(number_list: List[int]) -> int:
-    if len(number_list) == 0:
+    if number_list == list():
         return 0
     else:
         return number_list[0] + sum_list_v2(number_list=number_list[1:])
 
 
 def sum_list_v1(number_list: List[int]) -> int:
+    if number_list == list():
+        return 0
+
     result = number_list[0]
 
     if len(number_list) == 1:
@@ -34,7 +37,7 @@ def tests():
 
     assert result == 37
 
-    print("OK")
+    print("recursion_sum_list OK")
 
 
 tests()
