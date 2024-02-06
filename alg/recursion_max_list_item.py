@@ -12,10 +12,7 @@ def max_list_item_v1(number_list: List[int]) -> Optional[int]:
     if len(number_list) == 1:
         return number_list[0]
 
-    if number_list[0] >= number_list[1]:
-        number_list.pop(1)
-    else:
-        number_list.pop(0)
+    number_list.pop(1) if number_list[0] >= number_list[1] else number_list.pop(0)
 
     return max_list_item_v1(number_list=number_list)
 
