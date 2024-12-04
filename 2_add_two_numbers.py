@@ -32,14 +32,14 @@ from typing import List
 
 
 # Определение односвязного списка
-class Node:
+class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
 
     def __eq__(self, other):
         """Сравнение объектов"""
-        if isinstance(other, Node):
+        if isinstance(other, ListNode):
             return self.val == other.val and self.next == other.next
         return False
 
@@ -49,80 +49,48 @@ class Node:
 
 class Solution:
 
-    def addTwoNumbers(
-            self,
-            l1: List[Node],
-            l2: List[Node]
-    ) -> List[Node]:
-        """"""
-        out = []
-        buff, idx = 0, 0
-        last_idx = max(len(l1), len(l2))
-        cur_next = None
-        while True:
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+        head = current = ListNode(0)
+        buff = 0
 
-            if cur_next is None:
-                # Первый элемент
-                cur_val = (
-                        (l1[idx].val if len(l1) > idx else 0) +
-                        (l2[idx].val if len(l2) > idx else 0)
-                )
-                if cur_val >= 10:
-                    buff = 1
-                    cur_val = cur_val - 10
-            else:
-                cur_val = cur_next
+        # Цикл, пока в списках есть элементы или есть буфер для переноса
+        while l1 or l2 or buff:
+            l1_val = l1.val if l1 else 0
+            l2_val = l2.val if l2 else 0
 
-            if idx == last_idx - 1:
-                if buff == 1:
-                    out.append(Node(val=cur_val, next=1))
-                    out.append(Node(val=1, next=None))
-                else:
-                    out.append(Node(val=cur_val, next=None))
-                break
+            cur_val = l1_val + l2_val + buff
 
-            cur_next = (
-                    (l1[idx].next if len(l1) > idx and l1[idx].next else 0) +
-                    (l2[idx].next if len(l2) > idx and l2[idx].next else 0) +
-                    buff
-            )
-            buff = 0
+            # Целое число от деления на 10 - перенос на след узел
+            buff = cur_val // 10
 
-            if cur_next >= 10:
-                buff = 1
-                cur_next = cur_next - 10
+            # В текущий узел остаток от деления
+            current.next = ListNode(val=cur_val % 10)
 
-            out.append(Node(val=cur_val, next=cur_next))
+            # Текущий узел - это next в родителе
+            current = current.next
 
-            idx += 1
+            # Переопределение списков
+            # Текущий список - следующий узел
+            l1 = l1.next if l1 else None
+            l2 = l2.next if l2 else None
 
-        return out
+        return head.next
 
 
-def genListNode(array: List[int]) -> List[Node]:
+def genListNode(array: List[int]) -> ListNode:
     """
     Генерация связного списка
-
-    :param array: List[int] - список чисел
-    :return: List[ListNode] - связный список
     """
-    len_array = len(array)
 
-    # out = []
-    # for idx in range(len_array):
-    #     out.append(
-    #         ListNode(
-    #             val=array[idx],
-    #             next=array[idx + 1] if idx + 1 < len_array else None
-    #         )
-    #     )
+    if len(array) == 1:
+        return ListNode(val=array[0], next=None)
 
-    out = [Node(
-        val=array[idx],
-        next=array[idx + 1] if idx + 1 < len_array else None
-    ) for idx in range(len_array)]
+    head = ListNode(
+        val=array[0],
+        next=genListNode(array=array[1:])
+    )
 
-    return out
+    return head
 
 
 def tests():
