@@ -34,6 +34,22 @@ class Solution:
                 if nums[i] + nums[j] == target:
                     return [i, j]
 
+    def twoSum2(self, nums: List[int], target: int) -> List[int]:
+        # проверенные элементы: key - элемент, value - индекс
+        checked_dict = dict()
+
+        # перебор индекса и элемента
+        for i, num in enumerate(nums):
+            # остаток = цель - элемент
+            remainder = target - num
+
+            if remainder in checked_dict:
+                # остаток совпадает с проверенным элементом
+                return [i, checked_dict[remainder]]
+
+            # добавляем элемент в словарь проверенных
+            checked_dict[num] = i
+
 
 def tests():
     solution = Solution()
