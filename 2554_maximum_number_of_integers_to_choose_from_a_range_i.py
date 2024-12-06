@@ -41,7 +41,7 @@ from typing import List
 
 
 class Solution:
-    def maxCount(self, banned: List[int], n: int, maxSum: int) -> int:
+    def maxCount1(self, banned: List[int], n: int, maxSum: int) -> int:
         temp_sum = 0
         count = 0
         for i in range(1, n + 1):
@@ -53,6 +53,22 @@ class Solution:
                 count += 1
             else:
                 break
+
+        return count
+
+    def maxCount(self, banned: List[int], n: int, maxSum: int) -> int:
+        banned = set(banned)
+        count = 0
+
+        for i in range(1, n + 1):
+            if i in banned:
+                continue
+
+            if maxSum - i < 0:
+                return count
+
+            maxSum -= i
+            count += 1
 
         return count
 
