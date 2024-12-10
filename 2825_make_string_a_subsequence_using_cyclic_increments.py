@@ -59,7 +59,7 @@ str1 и str2 состоят только из строчных английск�
 
 class Solution:
     def __init__(self):
-        self.abc_dict = {
+        self.next_letter = {
             'a': 'b',
             'b': 'c',
             'c': 'd',
@@ -88,7 +88,11 @@ class Solution:
             'z': 'a'
         }
 
-    def canMakeSubsequence(self, str1: str, str2: str) -> bool:
+    def canMakeSubsequence_(self, str1: str, str2: str) -> bool:
+        """
+            Runtime: 474 ms
+            Memory: 17.66 MB
+        """
         if len(str2) > len(str1):
             # str2 не может быть подстрокой str1,
             # если она длиннее
@@ -98,19 +102,46 @@ class Solution:
             temp_state = False
 
             for idx, let1 in enumerate(str1):
-                if let1 == let2 or let2 == self.abc_dict[let1]:
+                if let1 == let2 or let2 == self.next_letter[let1]:
                     str1 = str1[idx + 1:]
 
                     temp_state = True
                     break
+
             if not temp_state:
                 return False
 
         return True
 
+    def canMakeSubsequence(self, str1: str, str2: str) -> bool:
+        """
+            Runtime: 67 ms
+            Memory: 17.80 MB
+        """
+        if len(str2) > len(str1):
+            # str2 не может быть подстрокой str1,
+            # если она длиннее
+            return False
+
+        j = 0
+        for i in range(len(str1)):
+            if (
+                    str2[j] == str1[i] or
+                    str2[j] == self.next_letter[str1[i]]
+            ):
+                j += 1
+
+            if j == len(str2):
+                return True
+
+        return False
+
 
 def tests():
     solution = Solution()
+
+    result = solution.canMakeSubsequence(str1='b', str2='c')
+    assert result is True
 
     result = solution.canMakeSubsequence(str1='abc', str2='ad')
     assert result is True
