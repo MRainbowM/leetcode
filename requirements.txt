@@ -1,0 +1,1 @@
+line-profiler-pycharm==1.2.0
