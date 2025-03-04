@@ -33,7 +33,7 @@ class Solution:
         result = set([i for i in nums1 if i in nums2])
         return list(result)
 
-    def intersection_v2(self, nums1: List[int], nums2: List[int]) -> List[int]:
+    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
         """
         Runtime: 0ms
         Memory: 17.93MB
