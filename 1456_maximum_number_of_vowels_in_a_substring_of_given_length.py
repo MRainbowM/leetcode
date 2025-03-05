@@ -151,7 +151,6 @@ def tests():
     )
     assert result == 7
 
-
     result = solution.maxVowels(
         s="a",
         k=1
