@@ -1,5 +1,5 @@
 # https://leetcode.com/problems/find-all-anagrams-in-a-string
-
+# Скользящее окно
 """
 438. Find All Anagrams in a String
 Найдите все анаграммы в строке
