@@ -70,11 +70,10 @@ def tests():
     solution = Solution()
 
     result = solution.checkSubarraySum(
-        nums=[2,4,3],
+        nums=[2, 4, 3],
         k=6
     )
     assert result is True
-
 
     result = solution.checkSubarraySum(
         nums=[23, 2, 4, 6, 7],
