@@ -46,6 +46,15 @@ class Solution:
     def reverseWords(self, s: str) -> str:
         """
             Runtime: 0ms 100.00%
+            Memory: 17.75MB 91.94%
+        """
+        words = s.split()
+        words = words[::-1]
+        return ' '.join(words)
+
+    def reverseWords_v1(self, s: str) -> str:
+        """
+            Runtime: 0ms 100.00%
             Memory: 17.90MB 69.16%
         """
         string_array = s.split(' ')
